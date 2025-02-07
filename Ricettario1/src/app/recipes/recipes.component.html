@@ -1,0 +1,21 @@
+<html>
+<h2 class="titulo">Esplora le Creazioni dei Nostri Utenti</h2>
+<div class="recetas-container">
+    <div *ngFor="let recipe of recipes" class="receta-card" (click)="showRecipeDetails(recipe)">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-receta" class="modal" *ngIf="showModal">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h3>{{ selectedRecipe?.title }}</h3>
+        <p><strong>Ingredienti:</strong> {{ selectedRecipe?.ingredients }}</p>
+        <p><strong>Passi:</strong> {{ selectedRecipe?.steps }}</p>
+    </div>
+</div>
+</html>
+
+

@@ -1,0 +1,61 @@
+<body>
+  <div class="container">
+      <div class="contact-form">
+          <h2>Benvenuto Chef</h2>
+          <p>Unisciti alla nostra comunità di amanti della cucina. Qui le ricette non finiscono mai!</p>
+          
+          <div *ngIf="mensajeRegistro" class="mensaje">
+            {{ mensajeRegistro }}
+          </div>          
+          <form (ngSubmit)="registerUser()" [formGroup]="formRegister">
+              <!-- Nombre -->
+              <input type="text" formControlName="first_name" class="form-control" placeholder="Nome">
+              <div class="alert alert-danger" *ngIf="first_name.invalid && first_name.touched">
+                  <div *ngIf="first_name.errors?.['required']">Il nome è obbligatorio.</div>
+                  <div *ngIf="first_name.errors?.['minlength']">Deve avere almeno 3 caratteri.</div>
+                  <div *ngIf="first_name.errors?.['pattern']">Sono consentite solo lettere.</div>
+              </div>
+
+              <!-- Apellido -->
+              <input type="text" formControlName="last_name" class="form-control" placeholder="Cognome">
+              <div class="alert alert-danger" *ngIf="last_name.invalid && last_name.touched">
+                  <div *ngIf="last_name.errors?.['required']">Il cognome è obbligatorio.</div>
+              </div>
+
+              <!-- Email -->
+              <input type="email" formControlName="email" class="form-control" placeholder="Email">
+              <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                  <div *ngIf="email.errors?.['required']">L'email è obbligatoria.</div>
+                  <div *ngIf="email.errors?.['email']">Formato email non valido.</div>
+              </div>
+
+              <!-- Contraseña con Ojo -->
+              <div class="password-container">
+                  <input [type]="passwordFieldType" formControlName="password" class="form-control" placeholder="Password">
+                  <i class="fa toggle-password" 
+                     [ngClass]="passwordFieldType === 'password' ? 'fa-eye-slash' : 'fa-eye'" 
+                     (click)="togglePassword()">
+                  </i>
+              </div>
+              <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                  <div *ngIf="password.errors?.['required']">La password è obbligatoria.</div>
+              </div>
+
+              <!-- Confirmar Contraseña con Ojo -->
+              <div class="password-container">
+                  <input [type]="passwordFieldTypeConfirm" formControlName="password2" class="form-control" placeholder="Conferma Password">
+                  <i class="fa toggle-password" 
+                     [ngClass]="passwordFieldTypeConfirm === 'password' ? 'fa-eye-slash' : 'fa-eye'" 
+                     (click)="togglePasswordConfirm()">
+                  </i>
+              </div>
+              <div class="alert alert-danger" *ngIf="formRegister.errors?.['passwordMismatch'] && formRegister.touched">
+                  <div>Le password non corrispondono.</div>
+              </div>
+
+              <!-- Botón de Registro -->
+              <button type="submit" class="mt-3 input-submit" [disabled]="formRegister.invalid">Registrati</button>
+            </form>
+      </div>
+  </div>
+</body>

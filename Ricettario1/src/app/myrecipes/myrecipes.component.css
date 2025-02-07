@@ -1,0 +1,320 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: #12172b;
+}
+
+/* Contenedor Principal */
+.dashboard-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #1a2b5c;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h3 {
+    text-align: center;
+    color: #f0f8ff;
+    margin-bottom: 15px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* Menú de navegación */
+.dashboard-menu {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.tab-button {
+    flex: 1;
+    background:#0056b3;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+
+.tab-button:hover {
+    background:  #160f45;
+}
+
+/* Botones en Recetas */
+ .buttons-container {
+    display: flex;
+    gap: 10px; 
+    margin-top: 10px;
+    cursor: pointer;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.view-btn {
+    background: #160f45;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+.delete-btn {
+    background:#160f45;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+.view-btn:hover {
+    background:  #0056b3;
+}
+
+.delete-btn:hover {
+    background: #0056b3;
+}
+
+.dashboard-section {
+    background: #1a2b5c;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: block !important;
+}
+
+.hidden {
+    display: none;
+}
+/* Mensaje de No Recetas */
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #ccc;
+}
+
+#añadir-recetas {
+    background: var(--primary-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#añadir-recetas h3 {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.recipe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#añadir-recetas textarea,
+#añadir-recetas input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: var(--dark-color);
+    color: white;
+}
+
+#añadir-recetas button {
+    background: var(--darker-color);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+}
+
+#añadir-recetas button:hover {
+    background: #1a2b5c;;
+}
+
+#recetas-table {
+    width: 100%;
+    margin-top: 20px;
+    background: #1a2b5c !important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#recetas-table th, 
+#recetas-table td
+ {
+    padding: 10px;
+    text-align: center;
+    color: white !important; /* Hace que el texto sea blanco */
+    background-color: #1a2b5c !important; /* Fondo azul oscuro */
+    
+}
+#recetas-table tbody tr {
+    background-color: #1a2b5c !important; /* Fondo azul oscuro */
+    color: black !important; /* Texto blanco */
+}
+
+#recetas-table tbody tr:nth-of-type(odd) {
+    background-color: #2b3d7c !important; /* Color más oscuro para filas impares */
+}
+
+#recetas-table img {
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.edit, .delete {
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.edit:hover {
+    background: #007bff;
+}
+
+.delete:hover {
+    background: #007bff;
+}
+textarea,
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #2c3e70;
+    color: white;
+}
+.submit-btn {
+    background: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+} 
+/* Contenedor de Recetas */
+.recipes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Tarjeta de Receta */
+.recipe-card {
+    background: #273c75;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+@media (max-width: 768px) {
+    .dashboard-container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .dashboard-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .recipes-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .recipes-container {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-card {
+        padding: 10px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

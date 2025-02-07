@@ -1,0 +1,26 @@
+<h2 class="titulo">🎲 Mix It Up: Ricetta Creativa</h2>
+
+<!-- Botón visible solo se l'utente è autenticato -->
+<button *ngIf="isAuthenticated" (click)="generateRecipe()" [disabled]="loading" class="btn btn-primary">
+  {{ loading ? 'Generando...' : 'Genera Nuova Ricetta' }}
+</button>
+
+<p *ngIf="!isAuthenticated" class="text-warning">🔒 Devi accedere per generare una ricetta.</p>
+
+<p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+
+<!-- Mostra la lista delle ricette generate -->
+<div *ngIf="generatedRecipes.length > 0">
+  <h3>📌 Ricette Generate:</h3>
+  <ul class="receta-lista">
+    <li *ngFor="let recipe of generatedRecipes" class="receta-card">
+      <h4>{{ recipe.title }}</h4>
+      <p><strong>🥕 Ingredienti:</strong> {{ recipe.ingredients.join(', ') }}</p>
+      <p><strong>📖 Passaggi:</strong> {{ recipe.steps.join('. ') }}</p>
+      <!-- <button (click)="deleteRecipe(recipe.id!)" class="btn btn-danger">🗑 Elimina</button> -->
+    </li>
+  </ul>
+</div>
+
+<!-- Messaggio se non ci sono ricette generate -->
+<p *ngIf="generatedRecipes.length === 0" class="text-muted"> Non ci sono ancora ricette generate. Prova a mescolare gli ingredienti!</p>
